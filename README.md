@@ -1,6 +1,6 @@
 # apihub-simulacion-client-php
 
-<br/><img src='https://github.com/APIHub-CdC/imagenes-cdc/blob/master/circulo_de_credito-apihub.png' height='37' width='160'/><br/>Proyecto con el cual puedes invocar las siguientes apis:
+<br/><img src='https://github.com/APIHub-CdC/imagenes-cdc/blob/master/circulo_de_credito-apihub.png' height='37' width='160'/><br/>Proyecto con el cual puedes invocar la simulacion de las siguientes apis:
 
 * **Reporte de Cédito Consolidado con FICO® Score y Prevención de Lavado de Dinero** - *RCC-FS-PLD* - [ver aquí](https://github.com/APIHub-CdC/rcc-ficoscore-pld-client-php)
 * **Reporte de Cédito Consolidado** - *RCC* - [ver aquí](https://github.com/APIHub-CdC/rcc-client-php)
