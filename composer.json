@@ -1,0 +1,43 @@
+{
+    "name": "apihub-cdc/apihub-simulacion-client",
+    "description": "Proyecto unificador de clientes simuladores de APIs.",
+    "keywords": [
+        "apihub",
+        "php",
+        "sdk",
+        "api"
+    ],
+    "homepage": "http://developer.circulodecredito.com.mx",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "APIHub and contributors",
+            "homepage": "https://github.com/APIHub-CdC"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^6.2",
+        "monolog/monolog": "^1.24",
+        "apihub-cdc/rcc-ficoscore-simulacion-client": "^2.0.0",
+        "apihub-cdc/rcc-ficoscore-pld-simulacion-client": "^1.0.0",
+        "apihub-cdc/ficoscore-simulacion-client": "^2.0.0",
+        "apihub-cdc/rcc-simulacion-client": "^2.0.0",
+        "apihub-cdc/rcc-pm-simulacion-client": "^1.0.0",
+        "apihub-cdc/rc-simulacion-client": "^1.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "squizlabs/php_codesniffer": "~2.6",
+        "friendsofphp/php-cs-fixer": "~2.12"
+    },
+    "autoload": {
+        "psr-4": { "TOE\\Simulacion\\Client\\" : "lib/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "TOE\\Simulacion\\Client\\" : "test/" }
+    }
+}
