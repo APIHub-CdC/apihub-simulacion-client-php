@@ -1,6 +1,6 @@
 # apihub-simulacion-client-php
 
-<br/><img src='https://github.com/APIHub-CdC/imagenes-cdc/blob/master/circulo_de_credito-apihub.png' height='37' width='160'/><br/>Proyecto con el cual puedes invocar los siguientes apis:
+<br/><img src='https://github.com/APIHub-CdC/imagenes-cdc/blob/master/circulo_de_credito-apihub.png' height='37' width='160'/><br/>Proyecto con el cual puedes invocar las siguientes apis:
 
 * **Reporte de Cédito Consolidado con FICO® Score y Prevención de Lavado de Dinero** - *RCC-FS-PLD* - [ver aquí](https://github.com/APIHub-CdC/rcc-ficoscore-pld-client-php)
 * **Reporte de Cédito Consolidado** - *RCC* - [ver aquí](https://github.com/APIHub-CdC/rcc-client-php)
@@ -57,7 +57,7 @@ Al iniciar sesión seguir los siguientes pasos:
 
 Es importante contar con el setUp() en cada uno de los test, que se encargará de inicializar la petición. Por tanto, se debe modificar la URL (**the_url**); y la API KEY (**your_x_api_key**).
 
-> **NOTA:** Para más ejemplos de simulación, consulte la colección de Postman.
+> **NOTA:** Para más ejemplos de cada API, consulte las debidas colecciones de Postman.
 
 Los proyectos de simulación se encuentran en clases test diferentes, cada uno es agregado como dependencia en el **composer.json**. Las instrucciones para armar cada petición se encuentran en:
 
@@ -68,7 +68,7 @@ Los proyectos de simulación se encuentran en clases test diferentes, cada uno e
 * **Reporte de Cédito** - [ver aquí](https://github.com/APIHub-CdC/rc-simulacion-client-php)
 * **FICO® Score** - [ver aquí](https://github.com/APIHub-CdC/ficoscore-simulacion-client-php)
 
-### Paso 6. Ejecutar la prueba unitaria
+### Paso 3. Ejecutar las pruebas unitarias
 
 Teniendo los pasos anteriores ya solo falta ejecutar las prueba unitarias, con el siguiente comando:
 
