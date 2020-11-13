@@ -11,7 +11,7 @@ use \RC\Simulacion\MX\Client\Api\RCApi as Instance;
 use \RC\Simulacion\MX\Client\Model\PersonaPeticion;
 use \RC\Simulacion\MX\Client\Model\DomicilioPeticion;
 
-class ApiTest extends \PHPUnit_Framework_TestCase
+class RCApiTest extends \PHPUnit_Framework_TestCase
 {
     
     public function setUp()

@@ -12,7 +12,7 @@ use \RCCFS\Simulacion\MX\Client\Model\CatalogoEstados;
 use \RCCFS\Simulacion\MX\Client\Model\PersonaPeticion;
 use \RCCFS\Simulacion\MX\Client\Model\DomicilioPeticion;
 
-class ApiTest extends \PHPUnit_Framework_TestCase
+class RCCFSApiTest extends \PHPUnit_Framework_TestCase
 {  
 
     public function setUp()

@@ -14,7 +14,7 @@ use \RCCPM\Simulacion\MX\Client\Model\PersonaPeticion;
 use \RCCPM\Simulacion\MX\Client\Model\CatalogoEstados;
 use \RCCPM\Simulacion\MX\Client\Model\CatalogoPais;
 
-class ApiTest extends \PHPUnit_Framework_TestCase
+class RCCPMApiTest extends \PHPUnit_Framework_TestCase
 {
     
     public function setUp()

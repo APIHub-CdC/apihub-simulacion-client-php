@@ -12,7 +12,7 @@ use \FS\Simulacion\MX\Client\Model\Peticion;
 use \FS\Simulacion\MX\Client\Model\Persona;
 use \FS\Simulacion\MX\Client\Model\Domicilio;
 
-class ApiTest extends \PHPUnit_Framework_TestCase
+class FSApiTest extends \PHPUnit_Framework_TestCase
 {
     
     public function setUp()

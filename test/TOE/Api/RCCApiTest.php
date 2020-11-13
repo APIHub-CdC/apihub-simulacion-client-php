@@ -11,7 +11,7 @@ use \RCC\Simulacion\MX\Client\Api\RCCApi as Instance;
 use \RCC\Simulacion\MX\Client\Model\PersonaPeticion;
 use \RCC\Simulacion\MX\Client\Model\DomicilioPeticion;
 
-class ApiTest extends \PHPUnit_Framework_TestCase
+class RCCApiTest extends \PHPUnit_Framework_TestCase
 {
     
     public function setUp()
@@ -21,7 +21,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $this->x_api_key = "your_x_api_key";
         $client = new Client();
         $this->apiInstance = new Instance($client,$config);
-    }    
+    } 
 
     public function testGetFullRCC()
     {
