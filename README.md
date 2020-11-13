@@ -1,148 +1,82 @@
-# apihub-client-php
+# apihub-simulacion-client-php
 
-Proyecto con el cual puedes invocar los siguientes apis:
+<br/><img src='https://github.com/APIHub-CdC/imagenes-cdc/blob/master/circulo_de_credito-apihub.png' height='37' width='160'/><br/>Proyecto con el cual puedes invocar los siguientes apis:
 
 * **Reporte de Cédito Consolidado con FICO® Score y Prevención de Lavado de Dinero** - *RCC-FS-PLD* - [ver aquí](https://github.com/APIHub-CdC/rcc-ficoscore-pld-client-php)
 * **Reporte de Cédito Consolidado** - *RCC* - [ver aquí](https://github.com/APIHub-CdC/rcc-client-php)
 * **FICO® Score** - *FS* - [ver aquí](https://github.com/APIHub-CdC/ficoscore-client-php)
+* **Reporte de Cédito Consolidado con FICO® Score y Prevención de Lavado de Dinero** - *RCC-FS-PLD* - [ver aquí](https://github.com/APIHub-CdC/rcc-ficoscore-pld-simulacion-client-php)
+* **Reporte de Cédito Consolidado con FICO® Score** - *RCC-FS* - [ver aquí](https://github.com/APIHub-CdC/rcc-ficoscore-simulacion-client-php)
+* **Reporte de Cédito Consolidado** - *RCC* - [ver aquí](https://github.com/APIHub-CdC/rcc-simulacion-client-php)
+* **Reporte de Cédito para Persona Moral** - *RCCPM* - [ver aquí](https://github.com/APIHub-CdC/rcc-pm-simulacion-client-php)
+* **Reporte de Cédito** - *RC* - [ver aquí](https://github.com/APIHub-CdC/rc-simulacion-client-php)
+* **FICO® Score** - *FS* - [ver aquí](https://github.com/APIHub-CdC/ficoscore-simulacion-client-php)
 
 ## Requisitos
 
 PHP 7.1 ó superior
+
 ### Dependencias adicionales
+
 - Se debe contar con las siguientes dependencias de PHP:
-    - ext-curl
-    - ext-mbstring
+  - ext-curl
+  - ext-mbstring
 - En caso de no ser así, para linux use los siguientes comandos
+
 ```sh
 #ejemplo con php en versión 7.3 para otra versión colocar php{version}-curl
 apt-get install php7.3-curl
 apt-get install php7.3-mbstring
 ```
+
 - Composer [vea como instalar][1]
+
 ## Instalación
 
 Ejecutar: `composer install`
 
 ## Guía de inicio
 
-### Paso 1. Generar llave y certificado
+### Paso 1. Agregar el producto a la aplicación
 
-- Se tiene que tener un contenedor en formato PKCS12.
-- En caso de no contar con uno, ejecutar las instrucciones contenidas en **lib/Interceptor/key_pair_gen.sh** o con los siguientes comandos.
+Al iniciar sesión seguir los siguientes pasos:
 
-**Opcional**: Para cifrar el contenedor, colocar una contraseña en una variable de ambiente.
-```sh
-export KEY_PASSWORD=your_password
-```
-- Definir los nombres de archivos y alias.
-```sh
-export PRIVATE_KEY_FILE=pri_key.pem
-export CERTIFICATE_FILE=certificate.pem
-export SUBJECT=/C=MX/ST=MX/L=MX/O=CDC/CN=CDC
-export PKCS12_FILE=keypair.p12
-export ALIAS=circulo_de_credito
-```
-- Generar llave y certificado.
-```sh
-#Genera la llave privada.
-openssl ecparam -name secp384r1 -genkey -out ${PRIVATE_KEY_FILE}
-#Genera el certificado público.
-openssl req -new -x509 -days 365 \
-    -key ${PRIVATE_KEY_FILE} \
-    -out ${CERTIFICATE_FILE} \
-    -subj "${SUBJECT}"
-```
-- Generar contenedor en formato PKCS12.
-```sh
-# Genera el archivo pkcs12 a partir de la llave privada y el certificado.
-# Deberá empaquetar la llave privada y el certificado.
-openssl pkcs12 -name ${ALIAS} \
-    -export -out ${PKCS12_FILE} \
-    -inkey ${PRIVATE_KEY_FILE} \
-    -in ${CERTIFICATE_FILE} -password pass:${KEY_PASSWORD}
-```
-
-### Paso 2. Cargar el certificado dentro del portal de desarrolladores
-
- 1. Iniciar sesión.
- 2. Dar clic en la sección "**Mis aplicaciones**".
- 3. Seleccionar la aplicación.
- 4. Ir a la pestaña de "**Certificados para @tuApp**".
+1.  Dar clic en la sección "**Mis aplicaciones**".
+2.  Seleccionar la aplicación.
+3.  Ir a la pestaña de "**Editar '@tuApp**' ".
     <p align="center">
-      <img src="https://github.com/APIHub-CdC/imagenes-cdc/blob/master/applications.png">
+      <img src="https://github.com/APIHub-CdC/imagenes-cdc/blob/master/edit_applications.jpg" width="900">
     </p>
- 5. Al abrirse la ventana, seleccionar el certificado previamente creado y dar clic en el botón "**Cargar**":
+4.  Al abrirse la ventana emergente, seleccionar el producto.
+5.  Dar clic en el botón "**Guardar App**":
     <p align="center">
-      <img src="https://github.com/APIHub-CdC/imagenes-cdc/blob/master/upload_cert.png">
+      <img src="https://github.com/APIHub-CdC/imagenes-cdc/blob/master/selected_product.jpg" width="400">
     </p>
 
-### Paso 3. Descargar el certificado de Círculo de Crédito dentro del portal de desarrolladores
+### Paso 2. Preparar peticiones
 
- 1. Iniciar sesión.
- 2. Dar clic en la sección "**Mis aplicaciones**".
- 3. Seleccionar la aplicación.
- 4. Ir a la pestaña de "**Certificados para @tuApp**".
-    <p align="center">
-        <img src="https://github.com/APIHub-CdC/imagenes-cdc/blob/master/applications.png">
-    </p>
- 5. Al abrirse la ventana, dar clic al botón "**Descargar**":
-    <p align="center">
-        <img src="https://github.com/APIHub-CdC/imagenes-cdc/blob/master/download_cert.png">
-    </p>
- > Es importante que este contenedor sea almacenado en la siguiente ruta:
- > **/path/to/repository/lib/Interceptor/keypair.p12**
- >
- > Así mismo el certificado proporcionado por Círculo de Crédito en la siguiente ruta:
- > **/path/to/repository/lib/Interceptor/cdc_cert.pem**
-- En caso de que no se almacene así, se debe especificar la ruta donde se encuentra el contenedor y el certificado. Ver el siguiente ejemplo:
-```php
-$password = getenv('KEY_PASSWORD');
-$this->signer = new KeyHandler(
-    "/example/route/keypair.p12",
-    "/example/route/cdc_cert.pem",
-    $password
-);
-```
- > **NOTA:** Solamente en caso de que el contenedor se haya cifrado, debe colocarse la contraseña en una variable de ambiente e indicar el nombre de la misma, como se ve en la imagen anterior.
- 
-### Paso 4. Modificar URL y credenciales
+Es importante contar con el setUp() en cada uno de los test, que se encargará de inicializar la petición. Por tanto, se debe modificar la URL (**the_url**); y la API KEY (**your_x_api_key**).
 
- Modificar la URL y las credenciales de acceso en cada uno de los archivos de prueba ubicados en ***test/TOE/Api/***, como se muestra en el siguiente fragmento de código:
+> **NOTA:** Para más ejemplos de simulación, consulte la colección de Postman.
 
-```php
-public function setUp()
-{
-    $password = getenv('KEY_PASSWORD');
-    $this->signer = new KeyHandler(null, null, $password);
+Los proyectos de simulación se encuentran en clases test diferentes, cada uno es agregado como dependencia en el **composer.json**. Las instrucciones para armar cada petición se encuentran en:
 
-    $events = new MiddlewareEvents($this->signer);
-    $handler = handlerStack::create();
-    $handler->push($events->add_signature_header('x-signature'));   
-    $handler->push($events->verify_signature_header('x-signature'));
-    $client = new Client(['handler' => $handler]);
+* **Reporte de Cédito Consolidado con FICO® Score y Prevención de Lavado de Dinero** - [ver aquí](https://github.com/APIHub-CdC/rcc-ficoscore-pld-simulacion-client-php)
+* **Reporte de Cédito Consolidado con FICO® Score** - [ver aquí](https://github.com/APIHub-CdC/rcc-ficoscore-simulacion-client-php)
+* **Reporte de Cédito Consolidado** - [ver aquí](https://github.com/APIHub-CdC/rcc-simulacion-client-php)
+* **Reporte de Cédito para Persona Moral** - [ver aquí](https://github.com/APIHub-CdC/rcc-pm-simulacion-client-php)
+* **Reporte de Cédito** - [ver aquí](https://github.com/APIHub-CdC/rc-simulacion-client-php)
+* **FICO® Score** - [ver aquí](https://github.com/APIHub-CdC/ficoscore-simulacion-client-php)
 
-    $config = new Configuration();
-    $config->setHost('the_url');
-    
-    $this->apiInstance = new Instance($client, $config);
-    $this->x_api_key = "your_api_key";
-    $this->username = "your_username";
-    $this->password = "your_password";
-}   
- ```
- 
-### Paso 5. Capturar los datos de la petición
+### Paso 6. Ejecutar la prueba unitaria
 
-Es importante contar con el setUp() que se encargará de firmar y verificar la petición. De igual manera armar la petición con datos que se desea consultar.
+Teniendo los pasos anteriores ya solo falta ejecutar las prueba unitarias, con el siguiente comando:
 
-> **NOTA:** Los datos de las peticiones en los test son solo representativos.
-
-
-## Pruebas unitarias
-
-Para ejecutar las pruebas unitarias:
 ```sh
 ./vendor/bin/phpunit
 ```
+
+---
+[CONDICIONES DE USO, REPRODUCCIÓN Y DISTRIBUCIÓN](https://github.com/APIHub-CdC/licencias-cdc)
+
 [1]: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
